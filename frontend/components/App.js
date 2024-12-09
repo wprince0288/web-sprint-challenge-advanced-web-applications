@@ -130,9 +130,7 @@ export default function App() {
     }
   };
 
-  
-
-  const updateArticle = async ({ article_id, article }) => {
+    const updateArticle = async ({ article_id, article }) => {
     // ✨ implement
     // You got this!
     setMessage('');
