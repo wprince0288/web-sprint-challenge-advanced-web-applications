@@ -42,6 +42,7 @@ export default function LoginForm({ login }) {
       />
       <input
         maxLength={20}
+        type="password" 
         value={values.password}
         onChange={onChange}
         placeholder="Enter password"
