@@ -14,7 +14,7 @@ export default function Articles({
   // ✨ implement conditional logic: if no token exists
   // we should render a Navigate to login screen (React Router v.6)
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function Articles({
       <h2>Articles</h2>
       {
         articles.length === 0
-          ? 'No articles yet'
-          : articles.map(art => (
+          ? ('No articles yet')
+          : (articles.map((art) => (
             <div className="article" key={art.article_id}>
               <div>
                 <h3>{art.title}</h3>
@@ -44,11 +44,11 @@ export default function Articles({
                   disabled={currentArticleId === art.article_id} >
                   Edit
                 </button>
-                <button onCLick={() => deleteArticle(art.article_id)}>Delete</button>
+                <button onClick={() => deleteArticle(art.article_id)}>Delete</button>
               </div>
             </div>
           ))
-      }
+          )}
     </div>
   );
 }

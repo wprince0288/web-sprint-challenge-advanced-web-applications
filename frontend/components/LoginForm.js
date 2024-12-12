@@ -8,17 +8,18 @@ const initialFormValues = {
 export default function LoginForm({ login }) {
   const [values, setValues] = useState(initialFormValues)
   // ✨ where are my props? Destructure them here
-  
-  const onChange = evt => {
+
+  const onChange = (evt) => {
     const { id, value } = evt.target
     setValues({ ...values, [id]: value })
-  }
+  };
 
-  const onSubmit = evt => {
+  const onSubmit = (evt) => {
     evt.preventDefault()
     // ✨ implement
     login(values);
-  }
+    setValues(initialFormValues);
+  };
 
   const isDisabled = () => {
     // ✨ implement
@@ -42,15 +43,16 @@ export default function LoginForm({ login }) {
       />
       <input
         maxLength={20}
-        type="password" 
+        type="password"
         value={values.password}
         onChange={onChange}
         placeholder="Enter password"
         id="password"
       />
-      <button disabled={isDisabled()} id="submitCredentials">Submit credentials</button>
+      {values.password.trim().length < 8 && <p>Password must be at least 8 characters.</p>}
+      <button disabled={isDisabled()} id="submitCredentials" className={isDisabled() ? 'disabled-button' : 'active-button'}>Submit credentials</button>
     </form>
-  )
+  );
 }
 
 // 🔥 No touchy: LoginForm expects the following props exactly:
