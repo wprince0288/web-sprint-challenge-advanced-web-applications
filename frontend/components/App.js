@@ -28,10 +28,10 @@ export default function App() {
     // and a message saying "Goodbye!" should be set in its proper state.
     // In any case, we should redirect the browser back to the login screen,
     // using the helper above.
-    localStorage.removeItem('token')
-    setMessage('Goodbye!')
-    redirectToLogin()
-  }
+    localStorage.removeItem('token');
+    setMessage('Goodbye!');
+    redirectToLogin();
+  };
 
   const login = async ({ username, password }) => {
     // ✨ implement
@@ -40,8 +40,8 @@ export default function App() {
     // On success, we should set the token to local storage in a 'token' key,
     // put the server success message in its proper state, and redirect
     // to the Articles screen. Don't forget to turn off the spinner!
-    setMessage('')
-    setSpinnerOn(true)
+    setMessage('');
+    setSpinnerOn(true);
 
     try {
       const response = await fetch(loginUrl, {
@@ -130,7 +130,7 @@ export default function App() {
     }
   };
 
-    const updateArticle = async ({ article_id, article }) => {
+  const updateArticle = async ({ article_id, article }) => {
     // ✨ implement
     // You got this!
     setMessage('');
@@ -211,6 +211,7 @@ export default function App() {
                   (a) => a.article_id === currentArticleId
                 )}
                 setCurrentArticleId={setCurrentArticleId}
+                updateArticle={updateArticle}
               />
               <Articles
                 article={articles}

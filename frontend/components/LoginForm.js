@@ -49,7 +49,7 @@ export default function LoginForm({ login }) {
         placeholder="Enter password"
         id="password"
       />
-      {values.password.trim().length < 8 && <p>Password must be at least 8 characters.</p>}
+      {values.password.trim().length > 0 && values.password.trim().length < 8 && (<p className="error-message">Password must be at least 8 characters.</p>)}
       <button disabled={isDisabled()} id="submitCredentials" className={isDisabled() ? 'disabled-button' : 'active-button'}>Submit credentials</button>
     </form>
   );

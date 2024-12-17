@@ -17,7 +17,7 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
         title: currentArticle.title,
         text: currentArticle.text,
         topic: currentArticle.topic,
-      })
+      });
     } else {
       setValues(initialFormValues);
     }
@@ -57,7 +57,7 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
     // ✨ fix the JSX: make the heading display either "Edit" or "Create"
     // and replace Function.prototype with the correct function
     <form id="form" onSubmit={onSubmit}>
-      <h2>{currentArticle ? 'Edit' : 'Create'}</h2>
+      <h2>{currentArticle ? 'Edit Article' : 'Create Article'}</h2>
       <input
         maxLength={50}
         onChange={onChange}
@@ -83,7 +83,7 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
         <button type="button" onClick={onCancelEdit}>Cancel edit</button>
       </div>
     </form>
-  )
+  );
 }
 
 // 🔥 No touchy: ArticleForm expects the following props exactly:
