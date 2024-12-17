@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner Componet matches snapshot when spinner is off 1`] = `<DocumentFragment />`;
+
+exports[`Spinner Componet matches snapshot when spinner is on 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-beySPh cqHpCy"
+    id="spinner"
+  >
+    <h3>
+       .
+    </h3>
+       Please wait...
+  </div>
+</DocumentFragment>
+`;
