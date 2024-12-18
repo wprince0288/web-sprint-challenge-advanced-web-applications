@@ -29,7 +29,7 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
   };
 
   const onSubmit = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
     // ✨ implement
     // We must submit a new post or update an existing one,
     // depending on the truthyness of the `currentArticle` prop.
@@ -62,14 +62,14 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
         maxLength={50}
         onChange={onChange}
         value={values.title}
-        placeholder="Enter title"
+        placeholder="Enter a title (max 50 characters)"
         id="title"
       />
       <textarea
         maxLength={200}
         onChange={onChange}
         value={values.text}
-        placeholder="Enter text"
+        placeholder="Enter the article content (max 200 characters)"
         id="text"
       />
       <select onChange={onChange} id="topic" value={values.topic}>
@@ -81,6 +81,9 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
       <div className="button-group">
         <button disabled={isDisabled()} id="submitArticle">{currentArticle ? 'Update Article' : 'Create Article'}</button>
         <button type="button" onClick={onCancelEdit}>Cancel edit</button>
+        {currentArticle && (
+          <button type="button" onClick={onCancelEdit}>Cancel edit</button>
+        )}
       </div>
     </form>
   );

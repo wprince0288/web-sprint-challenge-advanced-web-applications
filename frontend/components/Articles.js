@@ -22,33 +22,41 @@ export default function Articles({
     getArticles();
   }, [getArticles]);
 
+  const handleDelete = (articleId) => {
+    if (window.confirm('Are you sure you want to delete this article?')) {
+      deleteArticle(articleId);
+    }
+  };
+
   return (
     // ✨ fix the JSX: replace `Function.prototype` with actual functions
     // and use the articles prop to generate articles
     <div className="articles">
       <h2>Articles</h2>
-      {
-        articles.length === 0
-          ? ('No articles yet')
-          : (articles.map((art) => (
-            <div className="article" key={art.article_id}>
-              <div>
-                <h3>{art.title}</h3>
-                <p>{art.text}</p>
-                <p>Topic: {art.topic}</p>
-              </div>
-              <div>
-                {/* <button disabled={true} onClick={Function.prototype}>Edit</button>
-                  <button disabled={true} onClick={Function.prototype}>Delete</button> */}
-                <button onClick={() => setCurrentArticleId(art.article_id)}
-                  disabled={currentArticleId === art.article_id} >
-                  Edit
-                </button>
-                <button onClick={() => deleteArticle(art.article_id)}>Delete</button>
-              </div>
+      {articles.length === 0 ? (
+        <p>No articles yet.{' '}
+          <button onClick={() => setCurrentArticleId(null)}>Add an Article</button></p>
+      ) : (
+        articles.map((art) => (
+          <div className={`article ${currentArticleId === art.article_id ? 'editing' : ''}`}
+            key={art.article_id}>
+            <div>
+              <h3>{art.title}</h3>
+              <p>{art.text}</p>
+              <p><strong>Topic:</strong> {art.topic}</p>
             </div>
-          ))
-          )}
+            <div>
+              <button onClick={() => setCurrentArticleId(art.article_id)}
+                disabled={currentArticleId === art.article_id}
+                aria-disabled={currentArticleId === art.article_id}
+              >
+                Edit
+              </button>
+              <button onClick={() => handleDelete(art.article_id)}>Delete</button>
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 }
