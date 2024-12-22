@@ -141,6 +141,10 @@ export default function App() {
 
     try {
       const token = localStorage.getItem('token');
+
+      if (!token) {
+        throw new Error('Unauthorized: No token found.');
+      }
       const response = await fetch(`${articlesUrl}/${article_id}`, {
         method: 'PUT',
         headers: {
@@ -152,9 +156,10 @@ export default function App() {
       const data = await response.json();
 
       if (response.ok) {
-        setArticles(
-          articles.map((a) => (a.article_id === article_id ? data.article : a))
+        setArticles((prevArticles) =>
+          prevArticles.map((a) => (a.article_id === article_id ? data.article : a))
         );
+
         setMessage('Article updated successfully!');
       } else {
         setMessage(data.message || 'Failed to update article.');
