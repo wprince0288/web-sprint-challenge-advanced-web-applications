@@ -22,6 +22,7 @@ export default function LoginForm({ login }) {
     try {
       await login(values);
       setValues(initialFormValues);
+      setErrorMessage('');
     } catch (error) {
       setErrorMessage('Login failed. Please try again');
     }
@@ -38,7 +39,7 @@ export default function LoginForm({ login }) {
   };
 
   return (
-    <form id="loginForm" onSubmit={onSubmit} aria-labelleby="login-form heading">
+    <form id="loginForm" onSubmit={onSubmit} aria-labelledby="login-form heading">
       <h2 id="login-form-heading">Login</h2>
       <label htmlFor="username">Username</label>
       <input

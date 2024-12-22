@@ -80,10 +80,7 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
       </select>
       <div className="button-group">
         <button disabled={isDisabled()} id="submitArticle">{currentArticle ? 'Update Article' : 'Create Article'}</button>
-        <button type="button" onClick={onCancelEdit}>Cancel edit</button>
-        {currentArticle && (
-          <button type="button" onClick={onCancelEdit}>Cancel edit</button>
-        )}
+        <button type="button" onClick={onCancelEdit}>Cancel</button>
       </div>
     </form>
   );

@@ -56,9 +56,9 @@ export default function App() {
         setMessage(data.message);
         redirectToArticles();
       } else {
-        setMessage(data.message);
+        setMessage(data.message || 'Login failed.');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error logging in.');
     } finally {
       setSpinnerOn(false);
@@ -88,9 +88,12 @@ export default function App() {
         setArticles(data.articles);
         setMessage('Articles fetched successfully!');
       } else if (response.status === 401) {
+        setMessage('Unauthorized. Please log in again.')
         redirectToLogin();
+      } else {
+        setMessage(data.message || 'Failed to fetch articles.')
       }
-    } catch (error) {
+    } catch {
       setMessage('Error fetching articles.');
     } finally {
       setSpinnerOn(false);
@@ -121,9 +124,9 @@ export default function App() {
         setArticles([...articles, data.article]);
         setMessage('Article posted successfully!');
       } else {
-        setMessage(data.message);
+        setMessage(data.message || 'Failed to post article.');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error posting article.');
     } finally {
       setSpinnerOn(false);
@@ -154,7 +157,7 @@ export default function App() {
         );
         setMessage('Article updated successfully!');
       } else {
-        setMessage(data.message);
+        setMessage(data.message || 'Failed to update article.');
       }
     } catch (error) {
       setMessage('Error updating article.');
@@ -180,9 +183,9 @@ export default function App() {
         setArticles(articles.filter((a) => a.article_id !== article_id));
         setMessage('Article deleted successfully!');
       } else {
-        setMessage(data.message);
+        setMessage(data.message || 'Failed to delete article.');
       }
-    } catch (error) {
+    } catch {
       setMessage('Error deleting article.');
     } finally {
       setSpinnerOn(false);
