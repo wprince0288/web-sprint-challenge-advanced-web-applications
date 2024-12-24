@@ -9,10 +9,11 @@ export default function Articles({
   deleteArticle,
   setCurrentArticleId,
   currentArticleId,
-  token,
+
 }) {
   // ✨ implement conditional logic: if no token exists
   // we should render a Navigate to login screen (React Router v.6)
+  const token = localStorage.getItem('token')
   if (!token) {
     return <Navigate to="/" />;
   }
@@ -20,12 +21,13 @@ export default function Articles({
   useEffect(() => {
     // ✨ grab the articles here, on first render only
     getArticles();
-  }, [getArticles]);
+  }, []);
+  console.log(articles)
 
   const handleDelete = (articleId) => {
-    if (window.confirm('Are you sure you want to delete this article?')) {
-      deleteArticle(articleId);
-    }
+    // if (window.confirm('Are you sure you want to delete this article?')) {
+    deleteArticle(articleId);
+    // }
   };
 
   return (
@@ -43,7 +45,7 @@ export default function Articles({
             <div>
               <h3>{art.title}</h3>
               <p>{art.text}</p>
-              <p><strong>Topic:</strong> {art.topic}</p>
+              <p>Topic: {art.topic}</p>
             </div>
             <div>
               <button onClick={() => setCurrentArticleId(art.article_id)}

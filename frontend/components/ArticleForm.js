@@ -62,14 +62,14 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
         maxLength={50}
         onChange={onChange}
         value={values.title}
-        placeholder="Enter a title (max 50 characters)"
+        placeholder="Enter title"
         id="title"
       />
       <textarea
         maxLength={200}
         onChange={onChange}
         value={values.text}
-        placeholder="Enter the article content (max 200 characters)"
+        placeholder="Enter text"
         id="text"
       />
       <select onChange={onChange} id="topic" value={values.topic}>
@@ -79,7 +79,7 @@ export default function ArticleForm({ postArticle, updateArticle, setCurrentArti
         <option value="Node">Node</option>
       </select>
       <div className="button-group">
-        <button disabled={isDisabled()} id="submitArticle">{currentArticle ? 'Update Article' : 'Create Article'}</button>
+        <button disabled={isDisabled()} id="submitArticle">Submit</button>
         <button type="button" onClick={onCancelEdit}>Cancel</button>
       </div>
     </form>

@@ -50,10 +50,11 @@ export default function App() {
         body: JSON.stringify({ username, password }),
       });
       const data = await response.json();
-
+      console.log(response)
       if (response.ok) {
         localStorage.setItem('token', data.token);
         setMessage(data.message);
+        getArticles()
         redirectToArticles();
       } else {
         setMessage(data.message || 'Login failed.');
@@ -83,10 +84,10 @@ export default function App() {
         headers: { Authorization: token },
       });
       const data = await response.json();
-
+      console.log(data)
       if (response.ok) {
         setArticles(data.articles);
-        setMessage('Articles fetched successfully!');
+        setMessage(data.message);
       } else if (response.status === 401) {
         setMessage('Unauthorized. Please log in again.')
         redirectToLogin();
@@ -122,7 +123,7 @@ export default function App() {
 
       if (response.ok) {
         setArticles([...articles, data.article]);
-        setMessage('Article posted successfully!');
+        setMessage(data.message);
       } else {
         setMessage(data.message || 'Failed to post article.');
       }
@@ -160,7 +161,7 @@ export default function App() {
           prevArticles.map((a) => (a.article_id === article_id ? data.article : a))
         );
 
-        setMessage('Article updated successfully!');
+        setMessage(data.message);
       } else {
         setMessage(data.message || 'Failed to update article.');
       }
@@ -186,7 +187,7 @@ export default function App() {
 
       if (response.ok) {
         setArticles(articles.filter((a) => a.article_id !== article_id));
-        setMessage('Article deleted successfully!');
+        setMessage(data.message);
       } else {
         setMessage(data.message || 'Failed to delete article.');
       }
@@ -211,7 +212,7 @@ export default function App() {
         </nav>
         <Routes>
           <Route path="/" element={<LoginForm login={login} />} />
-          <Route path="articles" element={
+          <Route path="/articles" element={
             <>
               <ArticleForm
                 postArticle={postArticle}
@@ -222,7 +223,7 @@ export default function App() {
                 updateArticle={updateArticle}
               />
               <Articles
-                article={articles}
+                articles={articles}
                 getArticles={getArticles}
                 deleteArticle={deleteArticle}
                 setCurrentArticleId={setCurrentArticleId}
